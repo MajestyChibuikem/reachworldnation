@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaBook, FaDownload, FaShoppingCart, FaCheckCircle, FaTimes, FaCreditCard, FaUniversity, FaGlobe } from 'react-icons/fa';
+import { FaBook, FaDownload, FaShoppingCart, FaCheckCircle, FaTimes, FaCreditCard, FaUniversity, FaGlobe, FaStore, FaExternalLinkAlt } from 'react-icons/fa';
 import { useState } from 'react';
 import APIService from '../services/api';
 
@@ -34,6 +34,39 @@ const BooksPage = () => {
     e.preventDefault();
     setProcessingBookIndex(selectedBookIndex);
     setError(null);
+
+    const selectedBook = books[selectedBookIndex];
+
+    // Handle Selar redirect — no backend needed
+    if (gateway === 'selar') {
+      if (!selectedBook.selarUrl) {
+        setError('This book is not yet available on Selar. Please choose another payment method.');
+        setProcessingBookIndex(null);
+        return;
+      }
+      const selarParams = new URLSearchParams({
+        add_to_cart: '1',
+        email: formData.email,
+        fullname: formData.fullName,
+        mobile: formData.phone,
+      });
+      window.location.href = `${selectedBook.selarUrl}?${selarParams.toString()}`;
+      return;
+    }
+
+    // Handle Gumroad redirect — no backend needed
+    if (gateway === 'gumroad') {
+      if (!selectedBook.gumroadUrl) {
+        setError('This book is not yet available on Gumroad. Please choose another payment method.');
+        setProcessingBookIndex(null);
+        return;
+      }
+      const gumroadParams = new URLSearchParams({
+        email: formData.email,
+      });
+      window.location.href = `${selectedBook.gumroadUrl}?${gumroadParams.toString()}`;
+      return;
+    }
 
     try {
       // Product IDs: Digital=1,3,5... Physical=2,4,6...
@@ -130,7 +163,9 @@ This book will help you rediscover that design and empower you to live it out wi
       category: 'Purpose',
       price: 10000,
       transformed: '30K+ Readers',
-      keyBenefit: 'Build the future God already imagined for you'
+      keyBenefit: 'Build the future God already imagined for you',
+      selarUrl: '',
+      gumroadUrl: ''
     },
     {
       title: '100 Days Journey into the Finished Works of Christ',
@@ -167,7 +202,9 @@ Now, walk in it.`,
       category: 'Devotional',
       price: 6000,
       transformed: '50K+ Readers',
-      keyBenefit: 'Experience freedom, peace, and power every single day'
+      keyBenefit: 'Experience freedom, peace, and power every single day',
+      selarUrl: '',
+      gumroadUrl: ''
     },
     {
       title: 'Reasons for Your Limitations',
@@ -197,7 +234,9 @@ When truth enters, limits fall.`,
       category: 'Breakthrough',
       price: 8000,
       transformed: '75K+ Readers',
-      keyBenefit: 'Step into clarity, courage, and breakthrough'
+      keyBenefit: 'Step into clarity, courage, and breakthrough',
+      selarUrl: '',
+      gumroadUrl: ''
     },
     {
       title: 'The Divine Man',
@@ -232,7 +271,9 @@ You were meant to live divine.`,
       category: 'Identity',
       price: 10000,
       transformed: '60K+ Readers',
-      keyBenefit: 'Think like Christ, walk like Christ, rule with His wisdom'
+      keyBenefit: 'Think like Christ, walk like Christ, rule with His wisdom',
+      selarUrl: 'https://selar.com/x7709268z1',
+      gumroadUrl: ''
     },
     {
       title: 'Pray in This Manner',
@@ -256,7 +297,9 @@ This is not about religious formulas — it's about relationship and revelation.
       category: 'Prayer',
       price: 8000,
       transformed: '100K+ Readers',
-      keyBenefit: 'Experience answered prayers consistently'
+      keyBenefit: 'Experience answered prayers consistently',
+      selarUrl: '',
+      gumroadUrl: ''
     },
     {
       title: 'Spiritual Authority and Dominion',
@@ -280,7 +323,9 @@ You are not a victim — you are a victor. It's time to take your place and walk
       category: 'Spiritual Warfare',
       price: 8000,
       transformed: '40K+ Readers',
-      keyBenefit: 'Take charge of your spiritual environment'
+      keyBenefit: 'Take charge of your spiritual environment',
+      selarUrl: '',
+      gumroadUrl: ''
     }
   ];
 
@@ -290,8 +335,8 @@ You are not a victim — you are a victor. It's time to take your place and walk
       <section className="relative min-h-[600px] flex items-center">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1600"
-            alt="Books and reading"
+            src="/ministry/openbook-bible.jpg"
+            alt="Open Bible with notebook — David S. Okeke"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/95 via-vibrant-orange/90 to-deep-charcoal/95" />
@@ -755,6 +800,54 @@ You are not a victim — you are a victor. It's time to take your place and walk
                       <span className="text-[10px] text-gray-500">Africa</span>
                     </button>
                   </div>
+                  <div className="grid grid-cols-2 gap-2 mt-2">
+                    <button
+                      type="button"
+                      onClick={() => setGateway('selar')}
+                      className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center gap-1 ${
+                        gateway === 'selar'
+                          ? 'border-emerald-600 bg-emerald-50'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <FaStore
+                        className={`text-xl ${
+                          gateway === 'selar' ? 'text-emerald-600' : 'text-gray-400'
+                        }`}
+                      />
+                      <span
+                        className={`font-semibold text-xs ${
+                          gateway === 'selar' ? 'text-emerald-600' : 'text-gray-600'
+                        }`}
+                      >
+                        Selar
+                      </span>
+                      <span className="text-[10px] text-gray-500">E-Store</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setGateway('gumroad')}
+                      className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center gap-1 ${
+                        gateway === 'gumroad'
+                          ? 'border-pink-600 bg-pink-50'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <FaExternalLinkAlt
+                        className={`text-xl ${
+                          gateway === 'gumroad' ? 'text-pink-600' : 'text-gray-400'
+                        }`}
+                      />
+                      <span
+                        className={`font-semibold text-xs ${
+                          gateway === 'gumroad' ? 'text-pink-600' : 'text-gray-600'
+                        }`}
+                      >
+                        Gumroad
+                      </span>
+                      <span className="text-[10px] text-gray-500">Digital</span>
+                    </button>
+                  </div>
                 </div>
 
                 <div>
@@ -802,56 +895,60 @@ You are not a victim — you are a victor. It's time to take your place and walk
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Shipping Address *
-                  </label>
-                  <input
-                    type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
-                    placeholder="Street address"
-                  />
-                </div>
+                {gateway !== 'selar' && gateway !== 'gumroad' && (
+                  <>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1">
+                        Shipping Address *
+                      </label>
+                      <input
+                        type="text"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
+                        placeholder="Street address"
+                      />
+                    </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">
-                      City *
-                    </label>
-                    <input
-                      type="text"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
-                      placeholder="City"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">
-                      Country *
-                    </label>
-                    <select
-                      name="country"
-                      value={formData.country}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
-                    >
-                      <option value="Nigeria">Nigeria</option>
-                      <option value="Ghana">Ghana</option>
-                      <option value="Kenya">Kenya</option>
-                      <option value="South Africa">South Africa</option>
-                      <option value="United Kingdom">United Kingdom</option>
-                      <option value="United States">United States</option>
-                    </select>
-                  </div>
-                </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">
+                          City *
+                        </label>
+                        <input
+                          type="text"
+                          name="city"
+                          value={formData.city}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
+                          placeholder="City"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1">
+                          Country *
+                        </label>
+                        <select
+                          name="country"
+                          value={formData.country}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
+                        >
+                          <option value="Nigeria">Nigeria</option>
+                          <option value="Ghana">Ghana</option>
+                          <option value="Kenya">Kenya</option>
+                          <option value="South Africa">South Africa</option>
+                          <option value="United Kingdom">United Kingdom</option>
+                          <option value="United States">United States</option>
+                        </select>
+                      </div>
+                    </div>
+                  </>
+                )}
 
                 <div className="pt-4">
                   <button
@@ -859,12 +956,22 @@ You are not a victim — you are a victor. It's time to take your place and walk
                     disabled={processingBookIndex !== null}
                     className="w-full bg-gradient-to-r from-brand-gold to-vibrant-orange text-white py-4 rounded-xl font-black text-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {processingBookIndex !== null ? 'Processing...' : 'Proceed to Payment'}
+                    {processingBookIndex !== null
+                      ? 'Processing...'
+                      : gateway === 'selar'
+                        ? 'Go to Selar Store'
+                        : gateway === 'gumroad'
+                          ? 'Go to Gumroad Store'
+                          : 'Proceed to Payment'}
                   </button>
                 </div>
 
                 <p className="text-xs text-gray-500 text-center">
-                  You will be redirected to {gateway === 'stripe' ? 'Stripe' : gateway === 'paystack' ? 'Paystack' : 'Flutterwave'} to complete your payment securely.
+                  {gateway === 'selar'
+                    ? 'You will be redirected to Selar to complete your purchase.'
+                    : gateway === 'gumroad'
+                      ? 'You will be redirected to Gumroad to complete your purchase.'
+                      : `You will be redirected to ${gateway === 'stripe' ? 'Stripe' : gateway === 'paystack' ? 'Paystack' : 'Flutterwave'} to complete your payment securely.`}
                 </p>
               </form>
             </div>
