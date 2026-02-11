@@ -7,39 +7,39 @@ const MinistryMoments = () => {
 
   const moments = [
     {
-      image: 'https://images.unsplash.com/photo-1510674485131-d4b499a30f4b?w=800&h=600&fit=crop',
-      title: 'Powerful Worship',
-      category: 'Worship Service',
-      isVideo: false
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&h=600&fit=crop',
-      title: 'Healing & Deliverance',
+      image: '/ministry/david-hugging.jpg',
+      title: 'Fellowship & Ministry',
       category: 'Ministry',
-      isVideo: true
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop',
-      title: 'Hands Raised in Praise',
-      category: 'Worship',
       isVideo: false
     },
     {
-      image: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=800&h=600&fit=crop',
-      title: 'Prayer & Intercession',
+      image: '/ministry/david-praying.jpg',
+      title: 'Healing & Deliverance',
       category: 'Prayer Meeting',
       isVideo: false
     },
     {
-      image: 'https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?w=800&h=600&fit=crop',
-      title: 'Youth on Fire',
-      category: 'Youth Service',
-      isVideo: true
+      image: '/ministry/singing.jpg',
+      title: 'Praise & Worship',
+      category: 'Worship Service',
+      isVideo: false
     },
     {
-      image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&h=600&fit=crop',
-      title: 'Global Outreach',
-      category: 'Missions',
+      image: '/ministry/old-podium.jpg',
+      title: 'The Early Days',
+      category: 'Preaching',
+      isVideo: false
+    },
+    {
+      image: '/ministry/group-picture.jpg',
+      title: 'Global Partnerships',
+      category: 'Outreach',
+      isVideo: false
+    },
+    {
+      image: '/ministry/david-listening.jpg',
+      title: 'Sitting Under The Word',
+      category: 'Devotion',
       isVideo: false
     },
   ];

@@ -8,8 +8,8 @@ const AboutPage = () => {
       <section className="relative min-h-[600px] flex items-center">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1600"
-            alt="Worship gathering"
+            src="/ministry/preaching.jpg"
+            alt="David S. Okeke preaching"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary-blue/90 via-primary-blue-dark/85 to-primary-blue/90"></div>
@@ -119,38 +119,38 @@ const AboutPage = () => {
           <div className="max-w-7xl mx-auto">
             {[
               {
-                year: '1985',
+                year: 'The Beginning',
                 title: 'The Calling',
-                subtitle: 'Broken but Chosen',
-                story: 'In the depths of personal struggle and financial ruin, David encountered God in a way that would forever change his destiny. "I had nothing," he recalls, "but God showed me I was called to reach the unreachable."',
-                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800',
+                subtitle: 'From Traditional Worship to Christ',
+                story: 'Born as the first son of a traditional practitioner, David S. Okeke was destined for a life of ancestral worship. But God had a different plan — a divine encounter that would change the course of his life forever.',
+                image: '/story/before-after.jpg',
                 gradient: 'from-accent-red to-primary-gold',
                 icon: '🔥'
               },
               {
-                year: '1992',
+                year: 'The Turning Point',
                 title: 'The Transformation',
-                subtitle: 'From Doubt to Divine Authority',
-                story: 'Seven years of discipleship, study, and spiritual refinement transformed David from a broken man into a vessel of divine authority. His first teaching reached 50 people. Within months, hundreds were being transformed.',
-                image: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=800',
+                subtitle: 'From Darkness to Divine Authority',
+                story: 'Through a powerful encounter with Christ, David was completely transformed. Years of discipleship, study, and spiritual refinement turned him from a traditional practitioner into a vessel of divine authority and a minister of the Gospel.',
+                image: '/ministry/old-podium.jpg',
                 gradient: 'from-accent-purple to-primary-blue',
                 icon: '✨'
               },
               {
-                year: '2005',
+                year: 'The Mission',
                 title: 'The Commission',
                 subtitle: 'Sent to the Nations',
-                story: 'God spoke clearly: "You will reach nations with My word." That year, Reachworld Nation Ministries was born. The first international outreach to Ghana saw 10,000 salvations in one crusade. The mandate was undeniable.',
-                image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800',
+                story: 'God spoke clearly: "You will reach nations with My word." Reachworld Nation Ministries was born — hosting crusades, writing transformational books, and partnering with churches across nations to spread the Gospel.',
+                image: '/ministry/david-in-church.jpg',
                 gradient: 'from-primary-gold to-primary-gold-light',
                 icon: '🌍'
               },
               {
-                year: '2024',
+                year: 'Today',
                 title: 'The Multiplication',
                 subtitle: 'A Global Movement',
-                story: 'Today, 2 million lives transformed. 150 nations impacted. 5,000 churches planted. 500,000 books changing mindsets globally. The mission continues: every nation, every tribe, every tongue will hear the message of transformation.',
-                image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800',
+                story: 'Today, Reachworld Nation is impacting lives across 150+ nations through books, conferences, crusades, and outreach programs. The mission continues: every nation, every tribe, every tongue will hear the message of transformation.',
+                image: '/ministry/group-picture.jpg',
                 gradient: 'from-primary-blue to-primary-blue-light',
                 icon: '👑'
               }

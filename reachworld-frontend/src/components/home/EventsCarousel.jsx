@@ -11,39 +11,48 @@ import 'swiper/css/pagination';
 const EventsCarousel = () => {
   const events = [
     {
-      title: 'Divinity Life Conference 2025',
-      date: 'March 15-17, 2025',
-      time: '9:00 AM - 6:00 PM',
-      location: 'Lagos, Nigeria',
-      description: 'Experience powerful teachings on divine revelation and kingdom principles.',
-      image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600&h=400&fit=crop',
+      title: 'Supernatural Visitation',
+      date: 'January 7-9, 2023',
+      time: '8:00 AM - 8:00 PM',
+      location: 'Enugu, Nigeria',
+      description: 'A Ministers Conference and Evening Rally Crusade with Apostle David Okeke and other anointed ministers.',
+      image: '/events/visitation-flyer.jpg',
       featured: true
     },
     {
-      title: 'Global Outreach Mission',
-      date: 'April 5-12, 2025',
-      time: 'All Day',
-      location: 'Multiple Locations',
-      description: 'Join us as we spread the gospel across nations.',
-      image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=400&fit=crop',
+      title: 'Atmosphere of Miracles',
+      date: 'October 22, 2021',
+      time: '12:00 PM',
+      location: 'Owerri, Imo State',
+      description: 'Experience signs, wonders, and the miraculous power of God with David S. Okeke and other ministers.',
+      image: '/events/atmosphere-of-miracles-flyer.jpg',
       featured: false
     },
     {
-      title: 'Youth Empowerment Summit',
-      date: 'May 20, 2025',
-      time: '10:00 AM - 4:00 PM',
-      location: 'Abuja, Nigeria',
-      description: 'Equipping the next generation with purpose and leadership skills.',
-      image: 'https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?w=600&h=400&fit=crop',
+      title: 'Wake Up The Mighty Men',
+      date: 'May 20-23, 2020',
+      time: '10:00 AM - 5:30 PM',
+      location: 'Imo State, Nigeria',
+      description: 'Revival Crusade & Ministers Conference with David S. Okeke and Apostle Uche Oruche.',
+      image: '/events/revival-flyer.jpg',
       featured: false
     },
     {
-      title: 'Book Launch: "Kingdom Mindset"',
-      date: 'June 8, 2025',
-      time: '6:00 PM - 9:00 PM',
-      location: 'Virtual Event',
-      description: 'Exclusive launch of the latest transformational book.',
-      image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop',
+      title: 'Awakening Service',
+      date: 'May 2, 2020',
+      time: '10:00 AM',
+      location: 'Assemblies of God Church, Imo State',
+      description: 'A powerful service of spiritual awakening featuring guest minister David S. Okeke.',
+      image: '/events/awakening-flyer.jpg',
+      featured: false
+    },
+    {
+      title: 'Rejuvenate The Youth',
+      date: 'September 29, 2020',
+      time: '6:30 PM - 9:30 PM',
+      location: 'Virtual (Zoom)',
+      description: 'An international youth Zoom call bringing together young ministers from Nigeria, India, USA, and Myanmar.',
+      image: '/events/zoomcall-flyer.jpg',
       featured: false
     }
   ];

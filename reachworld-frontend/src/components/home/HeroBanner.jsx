@@ -1,44 +1,53 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaChevronDown } from 'react-icons/fa';
 
 const HeroBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
-      title: 'Join The Gathering',
-      subtitle: 'Experience God\'s presence through powerful praise and worship',
-      image: 'https://images.unsplash.com/photo-1510674485131-d4b499a30f4b?w=1920&h=1080&fit=crop',
-      cta: 'Join Live Service'
+      titleLine1: "From a Dibia's Shrine",
+      titleLine2: "to God's Altar",
+      subtitle: 'Born the first son of a traditional priest, destined for the shrine — but God had a different plan.',
+      image: '/story/before-after.jpg',
+      cta: 'Read His Story',
+      duration: 7000
     },
     {
-      title: 'Prayer Changes Everything',
-      subtitle: 'Submit your prayer request and join our intercessory team',
-      image: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1920&h=1080&fit=crop',
-      cta: 'Send Prayer Request'
+      titleLine1: 'A Life Transformed',
+      titleLine2: 'by Grace',
+      subtitle: 'He walked away from everything he knew — the traditions, the rituals, the inheritance — and answered the call of God.',
+      image: '/story/traditional-old.jpg',
+      cta: 'Watch His Testimony',
+      duration: 5000
     },
     {
-      title: 'Lives Being Transformed Daily',
-      subtitle: 'Read amazing testimonies of healing, breakthrough, and miracles',
-      image: 'https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?w=1920&h=1080&fit=crop',
-      cta: 'Read Testimonies'
+      titleLine1: 'Now Reaching',
+      titleLine2: '150+ Nations',
+      subtitle: '30+ books published. Thousands of lives transformed. A global ministry born from one man\'s obedience.',
+      image: '/ministry/preaching.jpg',
+      cta: 'Explore the Ministry',
+      duration: 5000
     },
     {
-      title: 'Divinity Life Conference 2025',
-      subtitle: 'Three days of powerful ministry, worship, and divine encounters',
-      image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1920&h=1080&fit=crop',
-      cta: 'Register Now'
+      titleLine1: 'Your Transformation',
+      titleLine2: 'Awaits',
+      subtitle: 'If God could take a dibia\'s son and make him a minister to nations, imagine what He can do with your story.',
+      image: '/ministry/david-in-church.jpg',
+      cta: 'Begin Your Journey',
+      duration: 5000
     }
   ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
+  const goToNext = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
   }, [slides.length]);
+
+  useEffect(() => {
+    const timer = setTimeout(goToNext, slides[currentSlide].duration);
+    return () => clearTimeout(timer);
+  }, [currentSlide, goToNext, slides]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -46,10 +55,6 @@ const HeroBanner = () => {
 
   const goToPrevious = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
   return (
@@ -66,13 +71,12 @@ const HeroBanner = () => {
         >
           {/* Background Image */}
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-40"
+            className="absolute inset-0 bg-cover bg-center opacity-60"
             style={{
               backgroundImage: `url(${slides[currentSlide].image})`,
             }}
           >
-            {/* Light overlay for text contrast while showing starry background */}
-            <div className="absolute inset-0 bg-primary-blue/30"></div>
+            <div className="absolute inset-0 bg-primary-blue/50"></div>
           </div>
 
           {/* Content */}
@@ -89,9 +93,9 @@ const HeroBanner = () => {
                   stiffness: 100
                 }}
               >
-                <span className="inline-block text-neutral-white">{slides[currentSlide].title.split(' ').slice(0, -2).join(' ')}</span>{' '}
-                <span className="inline-block text-primary-gold">
-                  {slides[currentSlide].title.split(' ').slice(-2).join(' ')}
+                <span className="block text-neutral-white">{slides[currentSlide].titleLine1}</span>
+                <span className="block text-primary-gold mt-2">
+                  {slides[currentSlide].titleLine2}
                 </span>
               </motion.h1>
 
@@ -130,7 +134,7 @@ const HeroBanner = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows - Now visible with solid backgrounds */}
+      {/* Navigation Arrows */}
       <button
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-primary-gold hover:bg-primary-gold-light text-neutral-dark p-4 rounded-full transition-all duration-300 shadow-lg"
@@ -139,11 +143,20 @@ const HeroBanner = () => {
       </button>
 
       <button
-        onClick={goToNext}
+        onClick={() => { goToNext(); }}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-primary-gold hover:bg-primary-gold-light text-neutral-dark p-4 rounded-full transition-all duration-300 shadow-lg"
       >
         <FaChevronRight className="text-xl" />
       </button>
+
+      {/* Scroll Down Indicator */}
+      <motion.div
+        className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <FaChevronDown className="text-primary-gold text-2xl" />
+      </motion.div>
 
       {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">

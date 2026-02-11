@@ -125,7 +125,7 @@ const EventsPage = () => {
       description: 'Three days that will change your life forever. Experience the supernatural power of God, receive prophetic impartation, and step into your divine destiny.',
       type: 'Conference',
       status: 'Early Bird Registration',
-      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200',
+      image: '/events/upcoming-crusade.jpg',
       color: 'from-primary-blue to-primary-blue-dark',
       expectedAttendees: '20,000+',
       nations: '60+',
@@ -159,7 +159,7 @@ const EventsPage = () => {
       description: 'Empowering leaders to transform their spheres of influence. Biblical principles meet strategic insights for maximum kingdom impact.',
       type: 'Summit',
       status: 'Registration Open',
-      image: 'https://images.unsplash.com/photo-1540553016722-983e48a2cd10?w=1200',
+      image: '/events/atmosphere-of-miracles-flyer.jpg',
       color: 'from-primary-gold to-accent-red',
       expectedAttendees: '8,000+',
       nations: '35+',
@@ -193,7 +193,7 @@ const EventsPage = () => {
       description: 'Intensive training for the next generation. Discover your purpose, develop your skills, and make kingdom impact that changes nations.',
       type: 'Bootcamp',
       status: 'Coming Soon',
-      image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1200',
+      image: '/events/zoomcall-flyer.jpg',
       color: 'from-accent-red to-primary-gold',
       expectedAttendees: '3,000+',
       nations: '20+',
@@ -251,21 +251,21 @@ const EventsPage = () => {
       event: 'First Divinity Conference',
       attendees: '500',
       outcome: 'Sarah Okonkwo attended and discovered kingdom business principles',
-      image: 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=600'
+      image: '/events/awakening-flyer.jpg'
     },
     {
-      year: '2022',
-      event: 'Expansion to 5,000',
+      year: '2021',
+      event: 'Atmosphere of Miracles',
       attendees: '5,000',
-      outcome: 'Michael Chen received deliverance that set him free from addiction',
-      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600'
+      outcome: 'Signs, wonders, and miraculous healings across Owerri, Imo State',
+      image: '/events/atmosphere-of-miracles-flyer.jpg'
     },
     {
-      year: '2024',
-      event: '15,000 Transformed',
+      year: '2023',
+      event: 'Supernatural Visitation',
       attendees: '15,000',
-      outcome: 'Grace Mensah and 2,800 others discovered their divine calling',
-      image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600'
+      outcome: 'Ministers Conference and Crusade in Enugu with multiple anointed speakers',
+      image: '/events/visitation-flyer.jpg'
     }
   ];
 
@@ -275,8 +275,8 @@ const EventsPage = () => {
       <section className="relative min-h-[600px] flex items-center">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1600"
-            alt="Conference worship"
+            src="/events/upcoming-crusade.jpg"
+            alt="Crusade venue being prepared"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary-blue/90 via-primary-blue-dark/85 to-primary-blue/90"></div>

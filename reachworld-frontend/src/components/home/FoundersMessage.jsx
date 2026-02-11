@@ -22,9 +22,9 @@ const FoundersMessage = () => {
                 {/* Founder's Image */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[500px]">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop"
+                    src="/profile-img/profile-image.jpg"
                     alt="David S. Okeke - Founder"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
 
                   {/* Play Button Overlay */}
@@ -43,23 +43,21 @@ const FoundersMessage = () => {
                 <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-royal-blue/20 rounded-full blur-2xl"></div>
               </div>
             ) : (
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[500px]">
-                {/* Video Placeholder */}
-                <div className="w-full h-full bg-deep-charcoal flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <FaPlay className="text-6xl mx-auto mb-4" />
-                    <p className="text-xl">Video Player Placeholder</p>
-                    <p className="text-sm text-gray-400 mt-2">
-                      Integration will be added in Phase 2
-                    </p>
-                    <button
-                      onClick={() => setShowVideo(false)}
-                      className="mt-4 px-6 py-2 bg-brand-gold text-deep-charcoal rounded-lg hover:bg-white transition-colors duration-300"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[500px] bg-black">
+                <video
+                  src="/ministry/david-bio.mp4"
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                >
+                  Your browser does not support the video tag.
+                </video>
+                <button
+                  onClick={() => setShowVideo(false)}
+                  className="absolute top-4 right-4 px-4 py-2 bg-brand-gold text-deep-charcoal rounded-lg hover:bg-white transition-colors duration-300 font-semibold shadow-lg z-10"
+                >
+                  Close
+                </button>
               </div>
             )}
           </motion.div>
@@ -86,9 +84,11 @@ const FoundersMessage = () => {
 
             {/* Founder Info */}
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-royal-blue rounded-full flex items-center justify-center">
-                <span className="text-2xl text-white font-bold">DSO</span>
-              </div>
+              <img
+                src="/profile-img/profile-image.jpg"
+                alt="David S. Okeke"
+                className="w-16 h-16 rounded-full object-cover shadow-lg"
+              />
               <div>
                 <h3 className="text-xl font-bold text-deep-charcoal">David S. Okeke</h3>
                 <p className="text-gray-600">Founder & Lead Pastor</p>
