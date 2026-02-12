@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaBook, FaDownload, FaShoppingCart, FaCheckCircle, FaTimes, FaCreditCard, FaUniversity, FaGlobe, FaStore, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaBook, FaShoppingCart, FaCheckCircle, FaTimes, FaCreditCard, FaUniversity, FaGlobe, FaStore, FaExternalLinkAlt } from 'react-icons/fa';
 import { useState } from 'react';
 import APIService from '../services/api';
 
@@ -29,44 +29,11 @@ const BooksPage = () => {
     setError(null);
   };
 
-  // Handle book purchase with selected gateway
+  // Handle book purchase with selected gateway (Stripe/Paystack/Flutterwave only)
   const handleBookPurchase = async (e) => {
     e.preventDefault();
     setProcessingBookIndex(selectedBookIndex);
     setError(null);
-
-    const selectedBook = books[selectedBookIndex];
-
-    // Handle Selar redirect — no backend needed
-    if (gateway === 'selar') {
-      if (!selectedBook.selarUrl) {
-        setError('This book is not yet available on Selar. Please choose another payment method.');
-        setProcessingBookIndex(null);
-        return;
-      }
-      const selarParams = new URLSearchParams({
-        add_to_cart: '1',
-        email: formData.email,
-        fullname: formData.fullName,
-        mobile: formData.phone,
-      });
-      window.location.href = `${selectedBook.selarUrl}?${selarParams.toString()}`;
-      return;
-    }
-
-    // Handle Gumroad redirect — no backend needed
-    if (gateway === 'gumroad') {
-      if (!selectedBook.gumroadUrl) {
-        setError('This book is not yet available on Gumroad. Please choose another payment method.');
-        setProcessingBookIndex(null);
-        return;
-      }
-      const gumroadParams = new URLSearchParams({
-        email: formData.email,
-      });
-      window.location.href = `${selectedBook.gumroadUrl}?${gumroadParams.toString()}`;
-      return;
-    }
 
     try {
       // Product IDs: Digital=1,3,5... Physical=2,4,6...
@@ -107,29 +74,29 @@ const BooksPage = () => {
     {
       name: 'Sarah Okonkwo',
       location: 'Lagos, Nigeria',
-      bookRead: 'The Kingdom Mindset',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800',
-      before: 'Business failing, ₦5 million in debt, no hope',
-      after: 'Applied kingdom principles from the book. Revenue increased 400% in 6 months. Now employs 15 people.',
-      quote: '"This book didn\'t just change my mindset—it transformed my entire business model. Every chapter was a breakthrough!"'
+      bookRead: 'Life by Design',
+      image: '/books/Life-by-design.jpeg',
+      before: 'No direction, drifting through life without purpose or clarity',
+      after: 'Applied the principles from the book. Found her God-given blueprint and now runs a purpose-driven business impacting her community.',
+      quote: '"This book didn\'t just change my mindset—it transformed my entire life direction. Every chapter was a breakthrough!"'
     },
     {
-      name: 'Michael Chen',
-      location: 'Singapore',
-      bookRead: 'Breaking Free',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800',
-      before: '12 years of addiction, broken marriage, lost career',
-      after: 'The book\'s teachings on deliverance set him free. Now leads recovery ministry reaching 200+ annually.',
-      quote: '"I read it in one night. By morning, chains that held me for 12 years were broken. This book saved my life!"'
+      name: 'Michael Eze',
+      location: 'Port Harcourt, Nigeria',
+      bookRead: 'The Divine Man',
+      image: '/books/The-divine-man.jpeg',
+      before: 'Struggling with identity, living far below his potential as a man of God',
+      after: 'Rediscovered his divine identity in Christ. Now leads a men\'s fellowship reaching 200+ men annually.',
+      quote: '"This book called me back to my source. I finally understood what it means to be a man after God\'s own heart."'
     },
     {
       name: 'Grace Mensah',
       location: 'Accra, Ghana',
-      bookRead: 'Divine Purpose Unlocked',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800',
-      before: 'Dead-end job, living paycheck to paycheck, no vision',
-      after: 'Discovered her God-given purpose. Started consulting firm now impacting 50+ African businesses.',
-      quote: '"Chapter 3 on \'Finding Your Kingdom Assignment\' changed everything. I finally understood why I was created!"'
+      bookRead: 'Reasons for Your Limitations',
+      image: '/books/Reasons-for-your-limitations.jpeg',
+      before: 'Stuck in a cycle of repeated failure, couldn\'t understand why nothing was working',
+      after: 'Identified and uprooted the hidden barriers holding her back. Started a consulting firm now impacting 50+ African businesses.',
+      quote: '"The chapter on hidden roots of failure changed everything. I finally understood what was holding me back!"'
     }
   ];
 
@@ -451,8 +418,14 @@ You are not a victim — you are a victor. It's time to take your place and walk
                       {story.quote}
                     </blockquote>
 
-                    <button className="bg-gradient-to-r from-brand-gold to-vibrant-orange text-white px-8 py-4 rounded-xl font-black hover:shadow-2xl transition-all flex items-center gap-2">
-                      <FaDownload /> Download "{story.bookRead}" Now
+                    <button
+                      onClick={() => {
+                        const bookIdx = books.findIndex(b => b.title === story.bookRead);
+                        if (bookIdx !== -1) openPurchaseModal(bookIdx);
+                      }}
+                      className="bg-gradient-to-r from-brand-gold via-brand-gold to-vibrant-orange text-white px-8 py-4 rounded-xl font-black hover:shadow-2xl transition-all flex items-center gap-2"
+                    >
+                      <FaShoppingCart /> Get "{story.bookRead}"
                     </button>
                   </div>
                 </div>
@@ -539,7 +512,7 @@ You are not a victim — you are a victor. It's time to take your place and walk
                       </button>
                       <button
                         onClick={() => openPurchaseModal(index)}
-                        className="bg-gradient-to-r from-brand-gold to-vibrant-orange text-white py-3 rounded-xl font-bold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                        className="bg-gradient-to-r from-brand-gold via-brand-gold to-vibrant-orange text-white py-3 rounded-xl font-bold hover:shadow-lg transition-all flex items-center justify-center gap-2"
                       >
                         <FaShoppingCart className="text-sm" /> Buy
                       </button>
@@ -602,13 +575,13 @@ You are not a victim — you are a victor. It's time to take your place and walk
           >
             <h2 className="text-4xl md:text-5xl font-black text-royal-blue mb-6">Your Transformation Starts with One Book</h2>
             <p className="text-xl text-gray-600 mb-8">
-              Download any book free or order physical copies. Your breakthrough is waiting in these pages.
+              Order your copy today. Your breakthrough is waiting in these pages.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <button className="bg-gradient-to-r from-royal-blue to-electric-purple text-white px-10 py-5 rounded-xl font-black text-xl hover:shadow-2xl transition-all">
                 Browse All Books
               </button>
-              <button className="bg-gradient-to-r from-brand-gold to-vibrant-orange text-white px-10 py-5 rounded-xl font-black text-xl hover:shadow-2xl transition-all">
+              <button className="bg-gradient-to-r from-brand-gold via-brand-gold to-vibrant-orange text-white px-10 py-5 rounded-xl font-black text-xl hover:shadow-2xl transition-all">
                 Order Physical Copies
               </button>
             </div>
@@ -660,7 +633,7 @@ You are not a victim — you are a victor. It's time to take your place and walk
                     setShowDetailModal(false);
                     openPurchaseModal(selectedBookIndex);
                   }}
-                  className="bg-gradient-to-r from-brand-gold to-vibrant-orange text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all flex items-center gap-2"
+                  className="bg-gradient-to-r from-brand-gold via-brand-gold to-vibrant-orange text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all flex items-center gap-2"
                 >
                   <FaShoppingCart /> Buy Now
                 </button>
@@ -682,7 +655,7 @@ You are not a victim — you are a victor. It's time to take your place and walk
                     setShowDetailModal(false);
                     openPurchaseModal(selectedBookIndex);
                   }}
-                  className="w-full bg-gradient-to-r from-brand-gold to-vibrant-orange text-white py-4 rounded-xl font-black text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-gradient-to-r from-brand-gold via-brand-gold to-vibrant-orange text-white py-4 rounded-xl font-black text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-2"
                 >
                   <FaShoppingCart /> Purchase This Book - ₦{books[selectedBookIndex].price.toLocaleString()}
                 </button>
@@ -723,12 +696,60 @@ You are not a victim — you are a victor. It's time to take your place and walk
                 </div>
               )}
 
-              <form onSubmit={handleBookPurchase} className="space-y-4">
+              <div className="space-y-4">
                 {/* Gateway Selection */}
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Payment Method
+                    Where would you like to buy?
                   </label>
+                  <div className="grid grid-cols-2 gap-2 mb-2">
+                    <button
+                      type="button"
+                      onClick={() => setGateway('selar')}
+                      className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center gap-1 ${
+                        gateway === 'selar'
+                          ? 'border-emerald-600 bg-emerald-50'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <FaStore
+                        className={`text-xl ${
+                          gateway === 'selar' ? 'text-emerald-600' : 'text-gray-400'
+                        }`}
+                      />
+                      <span
+                        className={`font-semibold text-xs ${
+                          gateway === 'selar' ? 'text-emerald-600' : 'text-gray-600'
+                        }`}
+                      >
+                        Selar
+                      </span>
+                      <span className="text-[10px] text-gray-500">E-Store</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setGateway('gumroad')}
+                      className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center gap-1 ${
+                        gateway === 'gumroad'
+                          ? 'border-pink-600 bg-pink-50'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <FaExternalLinkAlt
+                        className={`text-xl ${
+                          gateway === 'gumroad' ? 'text-pink-600' : 'text-gray-400'
+                        }`}
+                      />
+                      <span
+                        className={`font-semibold text-xs ${
+                          gateway === 'gumroad' ? 'text-pink-600' : 'text-gray-600'
+                        }`}
+                      >
+                        Gumroad
+                      </span>
+                      <span className="text-[10px] text-gray-500">Digital</span>
+                    </button>
+                  </div>
                   <div className="grid grid-cols-3 gap-2">
                     <button
                       type="button"
@@ -800,103 +821,88 @@ You are not a victim — you are a victor. It's time to take your place and walk
                       <span className="text-[10px] text-gray-500">Africa</span>
                     </button>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 mt-2">
+                </div>
+
+                {/* Selar / Gumroad — direct redirect, no form needed */}
+                {(gateway === 'selar' || gateway === 'gumroad') ? (
+                  <div className="space-y-4">
+                    <div className="bg-gray-50 rounded-xl p-4 text-center">
+                      <p className="text-sm text-gray-600">
+                        You'll be taken to <span className="font-bold">{gateway === 'selar' ? 'Selar' : 'Gumroad'}</span> where you can securely enter your details, make payment, and receive the book.
+                      </p>
+                    </div>
                     <button
                       type="button"
-                      onClick={() => setGateway('selar')}
-                      className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center gap-1 ${
+                      onClick={() => {
+                        const selectedBook = books[selectedBookIndex];
+                        const SELAR_STORE = 'https://selar.com/m/DavidSOkeke';
+                        const GUMROAD_STORE = 'https://gumroad.com';
+                        const url = gateway === 'selar'
+                          ? (selectedBook.selarUrl || SELAR_STORE)
+                          : (selectedBook.gumroadUrl || GUMROAD_STORE);
+                        window.open(url, '_blank');
+                      }}
+                      className={`w-full py-4 rounded-xl font-black text-lg hover:shadow-lg transition-all flex items-center justify-center gap-2 text-white ${
                         gateway === 'selar'
-                          ? 'border-emerald-600 bg-emerald-50'
-                          : 'border-gray-200 hover:border-gray-300'
+                          ? 'bg-gradient-to-r from-emerald-600 to-emerald-500'
+                          : 'bg-gradient-to-r from-pink-600 to-pink-500'
                       }`}
                     >
-                      <FaStore
-                        className={`text-xl ${
-                          gateway === 'selar' ? 'text-emerald-600' : 'text-gray-400'
-                        }`}
-                      />
-                      <span
-                        className={`font-semibold text-xs ${
-                          gateway === 'selar' ? 'text-emerald-600' : 'text-gray-600'
-                        }`}
-                      >
-                        Selar
-                      </span>
-                      <span className="text-[10px] text-gray-500">E-Store</span>
+                      {gateway === 'selar' ? <FaStore /> : <FaExternalLinkAlt />}
+                      Buy on {gateway === 'selar' ? 'Selar' : 'Gumroad'}
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => setGateway('gumroad')}
-                      className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center gap-1 ${
-                        gateway === 'gumroad'
-                          ? 'border-pink-600 bg-pink-50'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    >
-                      <FaExternalLinkAlt
-                        className={`text-xl ${
-                          gateway === 'gumroad' ? 'text-pink-600' : 'text-gray-400'
-                        }`}
-                      />
-                      <span
-                        className={`font-semibold text-xs ${
-                          gateway === 'gumroad' ? 'text-pink-600' : 'text-gray-600'
-                        }`}
-                      >
-                        Gumroad
-                      </span>
-                      <span className="text-[10px] text-gray-500">Digital</span>
-                    </button>
+                    <p className="text-xs text-gray-500 text-center">
+                      Opens in a new tab. {gateway === 'selar' ? 'Selar' : 'Gumroad'} handles payment and delivery.
+                    </p>
                   </div>
-                </div>
+                ) : (
+                  /* Stripe / Paystack / Flutterwave — use our form */
+                  <form onSubmit={handleBookPurchase} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
 
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
-                    placeholder="Enter your full name"
-                  />
-                </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1">
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
+                        placeholder="Enter your email"
+                      />
+                    </div>
 
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
-                    placeholder="Enter your email"
-                  />
-                </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-1">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
+                        placeholder="e.g. +234 801 234 5678"
+                      />
+                    </div>
 
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-gold focus:border-transparent"
-                    placeholder="e.g. +234 801 234 5678"
-                  />
-                </div>
-
-                {gateway !== 'selar' && gateway !== 'gumroad' && (
-                  <>
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-1">
                         Shipping Address *
@@ -947,33 +953,23 @@ You are not a victim — you are a victor. It's time to take your place and walk
                         </select>
                       </div>
                     </div>
-                  </>
+
+                    <div className="pt-4">
+                      <button
+                        type="submit"
+                        disabled={processingBookIndex !== null}
+                        className="w-full bg-gradient-to-r from-brand-gold via-brand-gold to-vibrant-orange text-white py-4 rounded-xl font-black text-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {processingBookIndex !== null ? 'Processing...' : 'Proceed to Payment'}
+                      </button>
+                    </div>
+
+                    <p className="text-xs text-gray-500 text-center">
+                      You will be redirected to {gateway === 'stripe' ? 'Stripe' : gateway === 'paystack' ? 'Paystack' : 'Flutterwave'} to complete your payment securely.
+                    </p>
+                  </form>
                 )}
-
-                <div className="pt-4">
-                  <button
-                    type="submit"
-                    disabled={processingBookIndex !== null}
-                    className="w-full bg-gradient-to-r from-brand-gold to-vibrant-orange text-white py-4 rounded-xl font-black text-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {processingBookIndex !== null
-                      ? 'Processing...'
-                      : gateway === 'selar'
-                        ? 'Go to Selar Store'
-                        : gateway === 'gumroad'
-                          ? 'Go to Gumroad Store'
-                          : 'Proceed to Payment'}
-                  </button>
-                </div>
-
-                <p className="text-xs text-gray-500 text-center">
-                  {gateway === 'selar'
-                    ? 'You will be redirected to Selar to complete your purchase.'
-                    : gateway === 'gumroad'
-                      ? 'You will be redirected to Gumroad to complete your purchase.'
-                      : `You will be redirected to ${gateway === 'stripe' ? 'Stripe' : gateway === 'paystack' ? 'Paystack' : 'Flutterwave'} to complete your payment securely.`}
-                </p>
-              </form>
+              </div>
             </div>
           </motion.div>
         </div>
