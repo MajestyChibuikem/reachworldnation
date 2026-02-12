@@ -69,7 +69,7 @@ const EventsCarousel = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-deep-charcoal mb-4">
-            Upcoming Events
+            Reachworld Events
           </h2>
           <p className="text-xl text-gray-600">
             Join us for life-changing conferences and gatherings
