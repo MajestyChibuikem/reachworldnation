@@ -16,7 +16,7 @@ The development team will share a live preview link with you, or you can view it
 A preview deployment will be shared via:
 - Vercel preview link
 - Or Netlify preview link
-
+1
 ---
 
 ## ✅ What's Included in Phase 1
