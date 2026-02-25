@@ -17,7 +17,7 @@ const HeroBanner = () => {
     {
       titleLine1: 'A Life Transformed',
       titleLine2: 'by Grace',
-      subtitle: 'He walked away from everything he knew — the traditions, the rituals, the inheritance — and answered the call of God.',
+      subtitle: 'He walked away from everything he knew - the traditions, the rituals, the inheritance - and answered the call of God.',
       image: '/story/traditional-old.jpg',
       cta: 'Watch His Testimony',
       duration: 5000

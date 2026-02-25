@@ -62,8 +62,7 @@ const Footer = () => {
                 </div>
               </div>
               <p className="text-gray-400 mb-6">
-                Empowering believers worldwide through divine revelation, transformational teachings,
-                and kingdom principles. Join us in making a global impact.
+                Bringing transformation to the world through the knowledge of Christ in an atmosphere of love, joy, peace, and the supernatural
               </p>
 
               {/* Contact Info */}

@@ -19,7 +19,7 @@ const StorySection = () => {
       description: "Born into tradition",
       accentColor: '#dc2626',
       image: '/story/traditional-old.jpg',
-      detail: "David S. Okeke was born the first son of a dibia — a traditional Igbo priest. He grew up immersed in the practices and rituals of his father, being groomed to carry on the family's traditional legacy."
+      detail: "David S. Okeke was born as the first son of a renowned native doctor in Arondizuogu, Imo State, Nigeria. He grew up immersed in the practices and rituals of his father and was groomed to carry on the family's traditional legacy"
     },
     {
       icon: FaPrayingHands,

@@ -14,8 +14,8 @@ const MinistryMoments = () => {
     },
     {
       image: '/ministry/david-praying.jpg',
-      title: 'Healing & Deliverance',
-      category: 'Prayer Meeting',
+      title: 'Mnistering Healing',
+      category: 'Healing Service',
       isVideo: false
     },
     {
