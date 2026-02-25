@@ -7,9 +7,9 @@ const HeroBanner = () => {
 
   const slides = [
     {
-      titleLine1: "From a Dibia's Shrine",
-      titleLine2: "to God's Altar",
-      subtitle: 'Born the first son of a traditional priest, destined for the shrine — but God had a different plan.',
+      titleLine1: "He was next in line",
+      titleLine2: "Until Everything Changed...",
+      subtitle: 'As the first son of a traditional priest, his path seemed predetermined — until grace rewrote his story.',
       image: '/story/before-after.jpg',
       cta: 'Read His Story',
       duration: 7000

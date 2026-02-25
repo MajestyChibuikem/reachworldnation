@@ -51,9 +51,9 @@ const StorySection = () => {
     { src: '/story/traditional-old4.jpg', label: 'Early Years' },
     { src: '/story/traditional-old5.jpg', label: 'The Old Life' },
     { src: '/ministry/old-podium.jpg', label: 'First Sermons' },
-    { src: '/ministry/david-studying.jpg', label: 'Studying the Word' },
-    { src: '/ministry/preaching.jpg', label: 'Preaching Today' },
-    { src: '/ministry/david-in-church.jpg', label: 'Leading Worship' },
+    { src: '/ministry/david-studying.jpg', label: 'Mission Driven' },
+    { src: '/ministry/preaching.jpg', label: 'Today' },
+    { src: '/ministry/david-in-church.jpg', label: 'Service in Ministry' },
   ];
 
   return (

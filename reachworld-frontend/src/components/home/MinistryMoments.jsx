@@ -8,7 +8,7 @@ const MinistryMoments = () => {
   const moments = [
     {
       image: '/ministry/david-hugging.jpg',
-      title: 'Fellowship & Ministry',
+      title: 'Itinerant Ministry',
       category: 'Ministry',
       isVideo: false
     },
@@ -27,7 +27,7 @@ const MinistryMoments = () => {
     {
       image: '/ministry/old-podium.jpg',
       title: 'The Early Days',
-      category: 'Preaching',
+      category: 'Teaching the word',
       isVideo: false
     },
     {
