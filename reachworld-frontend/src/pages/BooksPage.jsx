@@ -167,7 +167,7 @@ Now, walk in it.`,
       image: '/books/reachworld-devotional.jpeg',
       gradient: 'from-brand-gold to-vibrant-orange',
       category: 'Devotional',
-      price: 6000,
+      price: 8000,
       transformed: '50K+ Readers',
       keyBenefit: 'Experience freedom, peace, and power every single day',
       selarUrl: '',
@@ -536,7 +536,7 @@ You are not a victim — you are a victor. It's time to take your place and walk
             >
               <img
                 src="/profile-img/profile-image.jpg"
-                alt="Pastor David S. Okeke"
+                alt="David S. Okeke"
                 className="rounded-2xl shadow-2xl"
               />
             </motion.div>
@@ -557,7 +557,7 @@ You are not a victim — you are a victor. It's time to take your place and walk
                 in my life and will break chains in yours. Read them with expectation—your breakthrough is in these pages."
               </p>
               <p className="text-2xl font-black text-brand-gold">
-                - Pastor David S. Okeke
+                - David S. Okeke
               </p>
             </motion.div>
           </div>

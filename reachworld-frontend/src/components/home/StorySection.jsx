@@ -50,7 +50,7 @@ const StorySection = () => {
   const galleryImages = [
     { src: '/story/traditional-old4.jpg', label: 'Early Years' },
     { src: '/story/traditional-old5.jpg', label: 'The Old Life' },
-    { src: '/ministry/old-podium.jpg', label: 'First Sermons' },
+    { src: '/ministry/old-podium.jpg', label: 'Early Years in the Ministry' },
     { src: '/ministry/david-studying.jpg', label: 'Mission Driven' },
     { src: '/ministry/preaching.jpg', label: 'Today' },
     { src: '/ministry/david-in-church.jpg', label: 'Service in Ministry' },

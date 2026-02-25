@@ -7,8 +7,8 @@ const HeroBanner = () => {
 
   const slides = [
     {
-      titleLine1: "He was next in line",
-      titleLine2: "Until Everything Changed...",
+      titleLine1: "How Light found me",
+      titleLine2: "Light found him in the midst of Darkness",
       subtitle: 'As the first son of a traditional priest, his path seemed predetermined — until grace rewrote his story.',
       image: '/story/before-after.jpg',
       cta: 'Read His Story',
