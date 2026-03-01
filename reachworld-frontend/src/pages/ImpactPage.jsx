@@ -407,7 +407,7 @@ const ImpactPage = () => {
             <FaHandsHelping className="text-6xl mb-6 mx-auto text-brand-gold" />
             <h2 className="text-4xl font-bold mb-6">Join the Movement</h2>
             <p className="text-xl mb-10 text-gray-100">
-              Be part of transforming lives spiritually, intellectually, and socially. Your partnership creates lasting impact.
+              Be part of a global movement transforming lives spiritually, intellectually, and socially. Your partnership makes an eternal impact
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
