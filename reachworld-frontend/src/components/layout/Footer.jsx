@@ -69,7 +69,7 @@ const Footer = () => {
               <div className="space-y-2 text-sm">
                 <div className="flex items-center space-x-2 text-gray-400">
                   <FaEnvelope className="text-brand-gold" />
-                  <span>info@Temnix.com</span>
+                  <span>reachworldnationhq@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-2 text-gray-400">
                   <FaPhone className="text-brand-gold" />
