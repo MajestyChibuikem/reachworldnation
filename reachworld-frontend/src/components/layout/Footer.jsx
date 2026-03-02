@@ -73,7 +73,15 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center space-x-2 text-gray-400">
                   <FaPhone className="text-brand-gold" />
-                  <span>+234 (0) 703 262 0043</span>
+                  <a
+                    href="https://wa.me/2347032620043"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-brand-gold underline focus:outline-none"
+                    aria-label="Chat on WhatsApp"
+                  >
+                    +234 (0) 703 262 0043
+                  </a>
                 </div>
                 <div className="flex items-center space-x-2 text-gray-400">
                   <FaMapMarkerAlt className="text-brand-gold" />
