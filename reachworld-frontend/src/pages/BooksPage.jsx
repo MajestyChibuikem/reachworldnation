@@ -548,9 +548,7 @@ You are not a victim — you are a victor. It's time to take your place and walk
             >
               <h2 className="text-5xl font-black mb-6">Why I Write</h2>
               <p className="text-xl text-white/90 mb-6 leading-relaxed">
-                "Every book I write comes from a personal battle I've fought and won. I don't write theory—I write
-                transformation. When I was financially broken, God taught me kingdom mindset. When I battled doubt,
-                He showed me faith that moves mountains."
+                "I write books to ignite transformation, awaken minds, and unlock the untapped potential within every reader. My words are not just pages, they are a journey into higher consciousness, a call to mastery, and a blueprint for extraordinary living. Each book is crafted to challenge the ordinary, inspire the impossible, and equip you with the tools to rise above limitations. This is not just reading; it’s a movement toward greatness, a God-class experience designed to leave a lasting impact on your life, your thinking, and your destiny."
               </p>
               <p className="text-xl text-white/90 mb-6 leading-relaxed">
                 "These books aren't just information. They're impartation. They carry the anointing that broke chains
