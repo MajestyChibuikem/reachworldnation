@@ -18,7 +18,7 @@ const WhatWeDo = () => {
       icon: FaBook,
       title: 'Media & Education',
       subtitle: 'Knowledge Systems',
-      description: 'Communicating truth and equipping leaders through books, films, online courses, and creative digital resources.',
+      description: 'Communicating truth and equipping leaders through books, films, online courses, and transformative digital resources and teachings',
       path: '/arms/media-education',
       accentColor: 'accent-purple' // Subtle differentiation
     },
@@ -26,7 +26,7 @@ const WhatWeDo = () => {
       icon: FaHandsHelping,
       title: 'Social Impact',
       subtitle: 'Human Development',
-      description: 'Addressing real-life needs through community outreach, scholarships, relief efforts, and mindset transformation.',
+      description: 'We go beyond words and programs, we step into communities, feed the hungry, provide relief in times of need, and open doors of opportunity through scholarships, mentorship, and skill development. We extend a helping hand to the vulnerable, and through our community outreach and service arms, we bring light and hope to those who struggle in silence.',
       path: '/arms/social-impact',
       accentColor: 'primary-gold' // Subtle differentiation
     }
