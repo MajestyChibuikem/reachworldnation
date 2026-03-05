@@ -46,8 +46,16 @@ const WhatWeDo = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-primary-blue mb-4">What We Do</h2>
           <div className="w-24 h-1 bg-primary-gold mx-auto mb-6"></div>
           <p className="text-lg md:text-xl text-neutral-gray max-w-3xl mx-auto leading-relaxed">
-            Reachworld Nation Ministries operates through three strategic arms designed to transform lives
-            spiritually, intellectually, and socially—raising a people grounded in Christ, truth, and impact.
+            We exist for those who know there is more.
+            More than survival.
+            More than religion.
+            We are a movement of transformation.
+            We raise men and women who refuse to live small, people who hunger for truth, believers who want depth, not noise; conviction, not confusion; impact, not applause.
+            Through three strategic arms, we shape lives from the inside out:
+            Spiritually: grounding hearts in Christ until faith becomes a lifestyle.
+            Intellectually: renewing minds until truth becomes clarity.
+            Socially: activating purpose until influence becomes impact.
+            We are building people who carry light into dark systems, people who stand when culture bends, and people who transform cities because they themselves have been transformed.
           </p>
         </motion.div>
 
